@@ -22,9 +22,28 @@
   </style>
 </head>
 <body>
-  <p>
-    <button id="run-code">Run</button>
-  </p>
+ <!-- OMG center! -->
+ <center>
+  <img src="img/sonic-pi-blocks.png">
+ </center>
+ <!-- OMG tables for layout! -->
+ <table style="width: 100%">
+  <tr>
+   <td>
+    <label for="conf-host">Host</label>
+    <input id="conf-host" value="localhost">
+   </td>
+   <td>
+    <label for="conf-port">Port</label>
+    <input id="conf-port" type="number" value="4557">
+   </td>
+   <td>
+    <button id="run-code">Play</button>
+   </td>
+   <td>
+    <button id="stop-all">Stop</button>
+   </td>
+  </table>
 
   <div id="blocklyDiv" style="height: 480px; width: 100%;"></div>
 

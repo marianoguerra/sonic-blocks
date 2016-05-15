@@ -26,6 +26,10 @@ fn from_json @public case Req, State:
       lager.info("Running code ~p:~p -> ~p", [Host, Port, Id, Code])
       sbs_osc.send(Cmd, [Id, Code], Host, Port)
       {ok: true, desc: 'sent'}
+    case {'type' = (Cmd = '/stop-all-jobs'), 'host' = Host, 'port' = Port, 'id' = Id}:
+      lager.info("Running code ~p:~p -> ~p", [Host, Port, Id])
+      sbs_osc.send(Cmd, [Id], Host, Port)
+      {ok: true, desc: 'sent'}
     case Other:
       {ok: false, desc: 'unknown message', value: Other}
   end
