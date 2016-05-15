@@ -125,4 +125,26 @@
       var code = 'with_fx :' + fx + ', mix: (' + mix + ') do\n' + body + '\nend\n\n';
       return code;
     };
+
+    Bs.SPI_With_Synth = {
+      init: function() {
+        this.appendDummyInput()
+            .appendField("With Synth")
+            .appendField(new Blockly.FieldDropdown([["Saw", "dsaw"]]), "SYNTH");
+        this.appendStatementInput("BODY")
+            .setCheck(null);
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(290);
+        this.setTooltip('');
+        this.setHelpUrl('http://www.example.com/');
+      }
+    };
+
+    Code.SPI_With_Synth = function(block) {
+      var synth = block.getFieldValue('SYNTH');
+      var body = Blockly.JavaScript.statementToCode(block, 'BODY');
+      var code = 'with_synth :' + synth + ' do\n' + body + '\nend\n\n';
+      return code;
+    };
 }());
