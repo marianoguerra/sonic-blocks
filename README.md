@@ -27,10 +27,16 @@ Usage
 
 You need to install and run Sonic Pi, for that check the [Sonic Pi Website](http://sonic-pi.net/).
 
+To start just the Sonic Pi server without the user interface you need to run
+the server script, on ubuntu run:
 
-Start this server and open http://localhost:8080/ui/index.html in your browser.
+    /usr/lib/sonic-pi/server/bin/sonic-pi-server.rb
 
-play with the blocks and click the *Play* Button
+If you are running in another OS search on the sonic pi installation.
+
+Start the sonic blocks server and open http://localhost:8080/ui/index.html in your browser.
+
+Play with the blocks and click the **Play** Button
 
 Sonic Pi can be running in another computer, for that just change the Host and
 Port config in the UI to the host and port where Sonic Pi is running.
