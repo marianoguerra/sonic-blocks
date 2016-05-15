@@ -23,11 +23,11 @@ fn from_json @public case Req, State:
   Res = match InBody:
     case {'type' = (Cmd = '/run-code'), 'code' = Code,
           'host' = Host, 'port' = Port, 'id' = Id}:
-      lager.info("Running code ~p:~p -> ~p", [Host, Port, Id, Code])
+      lager.info("Running code ~p:~p ~p -> ~p", [Host, Port, Id, Code])
       sbs_osc.send(Cmd, [Id, Code], Host, Port)
       {ok: true, desc: 'sent'}
     case {'type' = (Cmd = '/stop-all-jobs'), 'host' = Host, 'port' = Port, 'id' = Id}:
-      lager.info("Running code ~p:~p -> ~p", [Host, Port, Id])
+      lager.info("Stopping all jobs ~p:~p ~p", [Host, Port, Id])
       sbs_osc.send(Cmd, [Id], Host, Port)
       {ok: true, desc: 'sent'}
     case Other:
