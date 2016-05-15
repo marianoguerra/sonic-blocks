@@ -229,7 +229,7 @@
     function kw_validator(text) {
         var i, len, c, cl, accum = '', isLetter, isNumber;
 
-        for (i = 0, len = text.length; i < len; i += 0) {
+        for (i = 0, len = text.length; i < len; i += 1) {
             c = text[i];
             cl = c.toLowerCase();
             isLetter = c >= 'a' && c <= 'z';
