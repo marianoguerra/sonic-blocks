@@ -147,4 +147,29 @@
       var code = 'with_synth :' + synth + ' do\n' + body + '\nend\n\n';
       return code;
     };
+
+	Bs.SPI_Do_Times = {
+	  init: function() {
+		this.appendValueInput("TIMES")
+			.setCheck("Number")
+			.appendField("Do");
+		this.appendDummyInput()
+			.appendField("Times");
+		this.appendStatementInput("BODY")
+			.setCheck(null);
+		this.setInputsInline(true);
+		this.setPreviousStatement(true, null);
+		this.setNextStatement(true, null);
+		this.setColour(290);
+		this.setTooltip('');
+		this.setHelpUrl('http://www.example.com/');
+	  }
+	};
+
+	Code.SPI_Do_Times = function(block) {
+	  var times = Blockly.JavaScript.valueToCode(block, 'TIMES', Blockly.JavaScript.ORDER_ATOMIC);
+	  var body = Blockly.JavaScript.statementToCode(block, 'BODY');
+	  var code = times + '.times do\n' + body + '\nend;\n\n';
+	  return code;
+	};
 }());
