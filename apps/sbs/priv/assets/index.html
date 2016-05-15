@@ -48,6 +48,9 @@
 
   <xml id="toolbox" style="display: none">
     <category name="Sound" colour="290">
+      <block type="SPI_Kw">
+       <field name="KW">e3</field>
+      </block>
       <block type="SPI_Loop"></block>
       <block type="SPI_With_FX">
         <value name="MIX">
@@ -66,6 +69,23 @@
         </value>
       </block>
       <block type="SPI_In_Thread">
+      </block>
+      <block type="SPI_Play">
+        <value name="RELEASE">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+        <value name="CUTOFF">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+        <value name="AMP">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
       </block>
       <block type="SPI_Sample">
         <value name="RATE">

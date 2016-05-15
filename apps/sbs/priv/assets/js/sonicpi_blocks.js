@@ -194,4 +194,76 @@
         return code;
     };
 
+	Bs.SPI_Play = {
+	  init: function() {
+		this.appendValueInput("PLAY")
+			.setCheck("kw")
+			.appendField("Play");
+		this.appendValueInput("RELEASE")
+			.setCheck("Number")
+			.appendField("Release");
+		this.appendValueInput("CUTOFF")
+			.setCheck("Number")
+			.appendField("Cut off");
+		this.appendValueInput("AMP")
+			.setCheck("Number")
+			.appendField("Amp");
+		this.setInputsInline(true);
+		this.setPreviousStatement(true, null);
+		this.setNextStatement(true, null);
+		this.setColour(290);
+		this.setTooltip('');
+		this.setHelpUrl('http://www.example.com/');
+	  }
+	};
+
+	Code.SPI_Play = function(block) {
+	  var play = Blockly.JavaScript.valueToCode(block, 'PLAY', Blockly.JavaScript.ORDER_ATOMIC);
+	  var release = Blockly.JavaScript.valueToCode(block, 'RELEASE', Blockly.JavaScript.ORDER_ATOMIC);
+	  var cutoff = Blockly.JavaScript.valueToCode(block, 'CUTOFF', Blockly.JavaScript.ORDER_ATOMIC);
+	  var amp = Blockly.JavaScript.valueToCode(block, 'AMP', Blockly.JavaScript.ORDER_ATOMIC);
+	  var code = 'play ' + play + ', release: ' + release + ', cutoff: ' + cutoff + ', amp: ' + amp + '\n';
+	  return code;
+	};
+
+    function kw_validator(text) {
+        var i, len, c, cl, accum = '', isLetter, isNumber;
+
+        for (i = 0, len = text.length; i < len; i += 0) {
+            c = text[i];
+            cl = c.toLowerCase();
+            isLetter = c >= 'a' && c <= 'z';
+            if (accum.length === 0) {
+                if (isLetter){
+                    accum += c;
+                }
+            } else {
+                isNumber = c >= '0' && c <= '9';
+                if (isLetter || isNumber || c === '_') {
+                    accum += c;
+                }
+            }
+        }
+
+        return accum;
+    }
+
+	Bs.SPI_Kw = {
+		init: function() {
+			this.appendDummyInput()
+			.appendField(":")
+			.appendField(new Blockly.FieldTextInput("e3", kw_validator), "KW");
+			this.setInputsInline(true);
+			this.setOutput(true, "kw");
+			this.setColour(290);
+			this.setTooltip('');
+			this.setHelpUrl('http://www.example.com/');
+		}
+	};
+
+    Code.SPI_Kw = function(block) {
+        var kw = block.getFieldValue('KW');
+        var code = ':' + kw;
+        return [code, Blockly.JavaScript.ORDER_ATOMIC];
+    };
 }());
