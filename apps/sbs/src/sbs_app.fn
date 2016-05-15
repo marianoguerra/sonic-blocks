@@ -1,0 +1,25 @@
+@behaviour(application)
+
+fn start @public case _Type, _Args:
+  Dispatch = cowboy_router.compile([
+    (`_`, [
+      ("/cmd", sbs_handler, []),
+      ("/ui/[...]", cowboy_static,
+            (priv_dir, sbs, "assets", [(mimetypes, cow_mimetypes, all)]))])
+    
+  ])
+
+  Port = application.get_env(sbs, http_port, 8080)
+  NumAcceptors = application.get_env(sbs, http_acceptors, 100)
+
+  TransportOpts = [(port, Port)]
+  ProtoOpts = [(env, [(dispatch, Dispatch)])]
+
+  (ok, _) = cowboy.start_http(http, NumAcceptors, TransportOpts, ProtoOpts)
+  lager.info("App sbs started at port ~p", [Port])
+  sbs_sup.start_link()
+end
+
+fn stop @public case _State:
+  ok
+end

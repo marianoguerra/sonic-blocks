@@ -1,0 +1,13 @@
+@behaviour(supervisor)
+
+fn start_link @public
+  case:
+    supervisor.start_link((local, #i module), #i module, [])
+end
+
+fn init @public
+  case []:
+    Procs = []
+    (ok, ((one_for_one, 10, 10), Procs))
+end
+

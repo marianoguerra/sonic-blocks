@@ -1,0 +1,20 @@
+
+fn send @public case Command, Args, Host, Port:
+  Msg = (message, maybe_binary_to_list(Command), binaries_to_list(Args))
+  lager.info("sending ~p", [Msg])
+  EncMsg = osc_lib.encode(Msg)
+  (ok, Socket) = gen_udp.open(0, [binary])
+  ok = gen_udp.send(Socket, maybe_binary_to_list(Host), Port, EncMsg)
+  gen_udp.close(Socket)
+end
+
+fn binaries_to_list case Items:
+  lists.map(fn maybe_binary_to_list:1, Items)
+end
+
+fn maybe_binary_to_list 
+  case Item when is_binary(Item):
+    binary_to_list(Item)
+  case Other:
+    Other
+end

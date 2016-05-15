@@ -1,0 +1,36 @@
+
+fn init @public case _, Req, Opts:
+  (upgrade, protocol, cowboy_rest)
+end
+
+fn rest_init @public case Req, Opts:
+  (ok, Req, Opts)
+end
+
+fn allowed_methods @public case Req, State:
+  (['POST'], Req, State)
+end
+
+fn content_types_accepted @public case Req, State:
+  ([('application/json', from_json)], Req, State)
+end
+
+fn from_json @public case Req, State:
+  (ok, InBodyRaw, Req1) = cowboy_req.body(Req)
+
+  InBody = jsx.decode(InBodyRaw, [return_maps])
+  lager.info("handling ~p", [InBody])
+  Res = match InBody:
+    case {'type' = (Cmd = '/run-code'), 'code' = Code,
+          'host' = Host, 'port' = Port, 'id' = Id}:
+      lager.info("Running code ~p:~p -> ~p", [Host, Port, Id, Code])
+      sbs_osc.send(Cmd, [Id, Code], Host, Port)
+      {ok: true, desc: 'sent'}
+    case Other:
+      {ok: false, desc: 'unknown message', value: Other}
+  end
+
+  EncRes = jsx.encode(Res)
+  Req2 = cowboy_req.set_resp_body(EncRes, Req1)
+  (true, Req2, State)
+end

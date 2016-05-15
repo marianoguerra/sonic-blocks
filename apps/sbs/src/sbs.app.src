@@ -1,0 +1,16 @@
+{application, sbs, [
+    {description, "REST sbs Application."},
+    {vsn, "1"},
+    {modules, []},
+    {registered, [sbs_sup]},
+    {applications, [
+        sasl,
+        kernel,
+        stdlib,
+        cowboy,
+        jsx,
+        lager
+    ]},
+    {mod, { sbs_app, []}},
+    {env, []}
+]}.
