@@ -172,4 +172,26 @@
 	  var code = times + '.times do\n' + body + '\nend;\n\n';
 	  return code;
 	};
+
+    Bs.SPI_In_Thread = {
+        init: function() {
+            this.appendDummyInput()
+            .appendField("Do in Parallel");
+            this.appendStatementInput("BODY")
+            .setCheck(null);
+            this.setInputsInline(false);
+            this.setPreviousStatement(true, null);
+            this.setNextStatement(true, null);
+            this.setColour(290);
+            this.setTooltip('Run blocks in parallel');
+            this.setHelpUrl('http://marianoguerra.github.io/sonic-blocs/help/do-in-parallel.html');
+        }
+    };
+
+    Code.SPI_In_Thread = function(block) {
+        var body = Blockly.JavaScript.statementToCode(block, 'BODY');
+        var code = 'in_thread do\n' + body + 'end\n\n';
+        return code;
+    };
+
 }());
