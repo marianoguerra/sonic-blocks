@@ -1,6 +1,3 @@
-sbs
-===
-
 ![Sonic Blocks Screenshot](https://raw.githubusercontent.com/marianoguerra/sonic-blocks/master/apps/sbs/priv/assets/img/sonic-pi-blocks.png)
 
 A Visual Programming frontend for [Sonic Pi](http://http://sonic-pi.net/)
