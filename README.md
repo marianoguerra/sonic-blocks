@@ -25,11 +25,26 @@ Mariano Guerra
 Usage
 -----
 
-You need to install and run sonic-pi, for that check the sonic-pi website.
+You need to install and run Sonic Pi, for that check the [Sonic Pi Website](http://http://sonic-pi.net/).
+
 
 Start this server and open http://localhost:8080/ui/index.html in your browser.
 
 play with the blocks and click the *Play* Button
+
+Sonic Pi can be running in another computer, for that just change the Host and
+Port config in the UI to the host and port where Sonic Pi is running.
+
+Technology
+----------
+
+Frontend is plain vanilla js, you can find the code at apps/sbs/priv/assets/
+
+The backend runs on top of [Cowboy](https://github.com/ninenines/cowboy), it
+uses the [erlang\_osc library](https://hex.pm/packages/erlang_osc) to talk to
+Sonic Pi.
+
+The backend is programmed in [efene](http://efene.org) a language for the Erlang VM.
 
 License
 -------
