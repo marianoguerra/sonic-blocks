@@ -25,7 +25,7 @@ Mariano Guerra
 Usage
 -----
 
-You need to install and run Sonic Pi, for that check the [Sonic Pi Website](http://http://sonic-pi.net/).
+You need to install and run Sonic Pi, for that check the [Sonic Pi Website](http://sonic-pi.net/).
 
 
 Start this server and open http://localhost:8080/ui/index.html in your browser.
