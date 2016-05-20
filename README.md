@@ -16,7 +16,7 @@ instructions, if you are on debian or ubuntu:
     chmod u+x rebar3
 
 You can put it in a folder in your $PATH or inside this repo and run all the
-rebar3 commands relative to the current folder (./rebar3 <command>).
+rebar3 commands relative to the current folder (./rebar3 *command*).
 
 
 then:
