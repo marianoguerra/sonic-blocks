@@ -7,8 +7,19 @@ A Visual Programming frontend for [Sonic Pi](http://http://sonic-pi.net/)
 Build
 -----
 
-For building and running from source you need to install rebar3, check the
-[Rebar3 website](http://rebar3.org) for installation instructions.
+For building and running from source you need to install erlang and rebar3,
+check the [Rebar3 website](http://rebar3.org) for rebar3 installation
+instructions, if you are on debian or ubuntu:
+
+    sudo apt-get install erlang erlang-dev erlang-eunit
+    wget https://s3.amazonaws.com/rebar3/rebar3
+    chmod u+x rebar3
+
+You can put it in a folder in your $PATH or inside this repo and run all the
+rebar3 commands relative to the current folder (./rebar3 <command>).
+
+
+then:
 
     rebar3 compile
 
@@ -40,6 +51,16 @@ Play with the blocks and click the **Play** Button
 
 Sonic Pi can be running in another computer, for that just change the Host and
 Port config in the UI to the host and port where Sonic Pi is running.
+
+Troubleshooting Jack problems on linux
+---------------------------------------
+
+If you are trying to run it on linux and have pulseaudio installed read the
+following resources to try o make it work:
+
+* http://marianoguerra.org/posts/sonic-pi-on-ubuntu-1604.html
+* https://github.com/samaaron/sonic-pi/issues/827
+* https://github.com/overtone/overtone/wiki/Installing-and-starting-jack
 
 Technology
 ----------
