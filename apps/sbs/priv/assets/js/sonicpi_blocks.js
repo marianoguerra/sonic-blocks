@@ -413,7 +413,7 @@
     Bs.SPI_Play = {
       init: function() {
         this.appendValueInput("PLAY")
-            .setCheck("kw")
+            .setCheck(["kw", "Array"])
             .appendField("Play");
         this.appendValueInput("ATTACK")
             .setCheck("Number")
