@@ -2,7 +2,74 @@
 (function () {
     'use strict';
     var Bs = Blockly.Blocks,
-        Code = Blockly.JavaScript;
+        Code = Blockly.JavaScript,
+        SYNTHS = [
+            ["Blade Runner style strings", "synth_violin"],
+            ["Brown Noise", "bnoise"],
+            ["Chip Bass", "chipbass"],
+            ["Chip Lead", "chiplead"],
+            ["Chip Noise", "chipnoise"],
+            ["Clip Noise", "cnoise"],
+            ["Dark Ambience", "dark_ambience"],
+            ["Dark Sea Horn", "dark_sea_horn"],
+            ["Detuned Pulse Wave", "dpulse"],
+            ["Detuned Saw Wave", "dsaw"],
+            ["Detuned Triangle Wave", "dtri"],
+            ["Dull Bell", "dull_bell"],
+            ["Grey Noise", "gnoise"],
+            ["Growl", "growl"],
+            ["Hollow", "hollow"],
+            ["Hoover", "hoover"],
+            ["Modulated Detuned Saw Waves", "mod_dsaw"],
+            ["Modulated Pulse", "mod_pulse"],
+            ["Modulated Saw Wave", "mod_saw"],
+            ["Modulated Sine Wave", "mod_sine"],
+            ["Modulated Triangle Wave", "mod_tri"],
+            ["Noise", "noise"],
+            ["Piano", "piano"],
+            ["Pink Noise", "pnoise"],
+            ["Pluck", "pluck"],
+            ["Pretty Bell", "pretty_bell"],
+            ["Pulse Wave", "pulse"],
+            ["Pulse Wave with sub", "subpulse"],
+            ["Sine Wave", "beep"],
+            ["Singer", "singer"],
+            ["Square Wave", "square"],
+            ["Supersaw", "supersaw"],
+            ["The Prophet", "prophet"],
+            ["Triangle Wave", "tri"],
+            ["Zawa", "zawa"]
+        ],
+        FXS = [
+            ["Band EQ Filter", "band_eq"],
+            ["Band Pass Filter", "bpf"],
+            ["Bitcrusher", "bitcrusher"],
+            ["Chorus", "chorus"],
+            ["Compressor", "compressor"],
+            ["Distortion", "distortion"],
+            ["Echo", "echo"],
+            ["Flanger", "flanger"],
+            ["GVerb", "gverb"],
+            ["High Pass Filter", "hpf"],
+            ["Hyperbolic Tangent", "tanh"],
+            ["Krush", "krush"],
+            ["Level Amplifier", "level"],
+            ["Low Pass Filter", "lpf"],
+            ["Mono", "mono"],
+            ["Normaliser", "normaliser"],
+            ["Octaver", "octaver"],
+            ["Pan", "pan"],
+            ["Pitch shift", "pitch_shift"],
+            ["Resonant High Pass Filter", "rhpf"],
+            ["Resonant Low Pass Filter", "rlpf"],
+            ["Reverb", "reverb"],
+            ["Ring Modulator", "ring_mod"],
+            ["Slicer", "slicer"],
+            ["Techno from IXI Lang", "ixi_techno"],
+            ["Vowel", "vowel"],
+            ["Whammy", "whammy"],
+            ["Wobble", "wobble"]
+        ];
 
     Bs.SPI_Loop = {
         init: function() {
@@ -103,7 +170,7 @@
 		init: function() {
 			this.appendDummyInput()
 			.appendField("With FX")
-			.appendField(new Blockly.FieldDropdown([["Reverb", "reverb"], ["option", "OPTIONNAME"], ["option", "OPTIONNAME"]]), "FX");
+			.appendField(new Blockly.FieldDropdown(FXS), "FX");
 			this.appendValueInput("MIX")
 			.setCheck("Number")
 			.appendField("mix");
@@ -130,7 +197,7 @@
       init: function() {
         this.appendDummyInput()
             .appendField("With Synth")
-            .appendField(new Blockly.FieldDropdown([["Saw", "dsaw"]]), "SYNTH");
+            .appendField(new Blockly.FieldDropdown(SYNTHS), "SYNTH");
         this.appendStatementInput("BODY")
             .setCheck(null);
         this.setPreviousStatement(true, null);
