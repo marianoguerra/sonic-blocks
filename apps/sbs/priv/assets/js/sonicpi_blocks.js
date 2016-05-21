@@ -491,4 +491,27 @@
         var code = ':' + kw;
         return [code, Code.ORDER_ATOMIC];
     };
+
+    // override JS variable declaration part
+    Code.init = function(workspace) {
+      // Create a dictionary of definitions to be printed before the code.
+      Code.definitions_ = Object.create(null);
+      // Create a dictionary mapping desired function names in definitions_
+      // to actual function names (to avoid collisions with user functions).
+      Code.functionNames_ = Object.create(null);
+
+      if (!Code.variableDB_) {
+        Code.variableDB_ = new Blockly.Names(Code.RESERVED_WORDS_);
+      } else {
+        Code.variableDB_.reset();
+      }
+    };
+
+    // override JS variable set to remove semicolon
+    Code.variables_set = function(block) {
+      var argument0 = Code.valueToCode(block, 'VALUE', Code.ORDER_ASSIGNMENT) || '0';
+      var varName = Code.variableDB_.getName(
+          block.getFieldValue('VAR'), Blockly.Variables.NAME_TYPE);
+      return varName + ' = ' + argument0 + '\n';
+    };
 }());
