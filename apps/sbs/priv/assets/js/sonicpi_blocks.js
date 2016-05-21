@@ -297,24 +297,42 @@
         return code;
     };
 
-	Bs.SPI_With_FX = {
-		init: function() {
-			this.appendDummyInput()
-			.appendField("With FX")
-			.appendField(new Blockly.FieldDropdown(FXS), "FX");
-			this.appendValueInput("MIX")
-			.setCheck("Number")
-			.appendField("mix");
-			this.appendStatementInput("BODY")
-			.setCheck(null);
-			this.setInputsInline(true);
-			this.setPreviousStatement(true, null);
-			this.setNextStatement(true, null);
-			this.setColour(290);
-			this.setTooltip('');
-			this.setHelpUrl('http://www.example.com/');
-		}
-	};
+    Bs.SPI_Choose = {
+      init: function() {
+        this.appendValueInput("LIST")
+            .setCheck("Array")
+            .appendField("choose");
+        this.setOutput(true, null);
+        this.setColour(260);
+        this.setTooltip('');
+        this.setHelpUrl('http://www.example.com/');
+      }
+    };
+
+    Code.SPI_Choose  = function(block) {
+      var list = Code.valueToCode(block, 'LIST', Code.ORDER_ATOMIC);
+      var code = 'choose(' + list + ')';
+      return [code, Code.ORDER_FUNCTION_CALL];
+    };
+
+    Bs.SPI_With_FX = {
+        init: function() {
+            this.appendDummyInput()
+            .appendField("With FX")
+            .appendField(new Blockly.FieldDropdown(FXS), "FX");
+            this.appendValueInput("MIX")
+            .setCheck("Number")
+            .appendField("mix");
+            this.appendStatementInput("BODY")
+            .setCheck(null);
+            this.setInputsInline(true);
+            this.setPreviousStatement(true, null);
+            this.setNextStatement(true, null);
+            this.setColour(290);
+            this.setTooltip('');
+            this.setHelpUrl('http://www.example.com/');
+        }
+    };
 
     Code.SPI_With_FX = function(block) {
       var fx = block.getFieldValue('FX');
@@ -346,30 +364,30 @@
       return code;
     };
 
-	Bs.SPI_Do_Times = {
-	  init: function() {
-		this.appendValueInput("TIMES")
-			.setCheck("Number")
-			.appendField("Do");
-		this.appendDummyInput()
-			.appendField("Times");
-		this.appendStatementInput("BODY")
-			.setCheck(null);
-		this.setInputsInline(true);
-		this.setPreviousStatement(true, null);
-		this.setNextStatement(true, null);
-		this.setColour(290);
-		this.setTooltip('');
-		this.setHelpUrl('http://www.example.com/');
-	  }
-	};
+    Bs.SPI_Do_Times = {
+      init: function() {
+        this.appendValueInput("TIMES")
+            .setCheck("Number")
+            .appendField("Do");
+        this.appendDummyInput()
+            .appendField("Times");
+        this.appendStatementInput("BODY")
+            .setCheck(null);
+        this.setInputsInline(true);
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(290);
+        this.setTooltip('');
+        this.setHelpUrl('http://www.example.com/');
+      }
+    };
 
-	Code.SPI_Do_Times = function(block) {
-	  var times = Code.valueToCode(block, 'TIMES', Code.ORDER_ATOMIC);
-	  var body = Code.statementToCode(block, 'BODY');
-	  var code = times + '.times do\n' + body + '\nend;\n\n';
-	  return code;
-	};
+    Code.SPI_Do_Times = function(block) {
+      var times = Code.valueToCode(block, 'TIMES', Code.ORDER_ATOMIC);
+      var body = Code.statementToCode(block, 'BODY');
+      var code = times + '.times do\n' + body + '\nend;\n\n';
+      return code;
+    };
 
     Bs.SPI_In_Thread = {
         init: function() {
@@ -392,37 +410,37 @@
         return code;
     };
 
-	Bs.SPI_Play = {
-	  init: function() {
-		this.appendValueInput("PLAY")
-			.setCheck("kw")
-			.appendField("Play");
-		this.appendValueInput("ATTACK")
-			.setCheck("Number")
-			.appendField("attack");
-		this.appendValueInput("DECAY")
-			.setCheck("Number")
-			.appendField("Decay");
-		this.appendValueInput("SUSTAIN")
-			.setCheck("Number")
-			.appendField("Sustain");
-		this.appendValueInput("RELEASE")
-			.setCheck("Number")
-			.appendField("Release");
-		this.appendValueInput("AMP")
-			.setCheck("Number")
-			.appendField("Amp");
-		this.setInputsInline(true);
-		this.setPreviousStatement(true, null);
-		this.setNextStatement(true, null);
-		this.setColour(290);
-		this.setTooltip('');
-		this.setHelpUrl('http://www.example.com/');
-	  }
-	};
+    Bs.SPI_Play = {
+      init: function() {
+        this.appendValueInput("PLAY")
+            .setCheck("kw")
+            .appendField("Play");
+        this.appendValueInput("ATTACK")
+            .setCheck("Number")
+            .appendField("attack");
+        this.appendValueInput("DECAY")
+            .setCheck("Number")
+            .appendField("Decay");
+        this.appendValueInput("SUSTAIN")
+            .setCheck("Number")
+            .appendField("Sustain");
+        this.appendValueInput("RELEASE")
+            .setCheck("Number")
+            .appendField("Release");
+        this.appendValueInput("AMP")
+            .setCheck("Number")
+            .appendField("Amp");
+        this.setInputsInline(true);
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(290);
+        this.setTooltip('');
+        this.setHelpUrl('http://www.example.com/');
+      }
+    };
 
-	Code.SPI_Play = function(block) {
-	  var play = Code.valueToCode(block, 'PLAY', Code.ORDER_ATOMIC),
+    Code.SPI_Play = function(block) {
+      var play = Code.valueToCode(block, 'PLAY', Code.ORDER_ATOMIC),
           attack = Code.valueToCode(block, 'ATTACK', Code.ORDER_ATOMIC),
           decay = Code.valueToCode(block, 'DECAY', Code.ORDER_ATOMIC),
           sustain = Code.valueToCode(block, 'SUSTAIN', Code.ORDER_ATOMIC),
@@ -430,8 +448,8 @@
           amp = Code.valueToCode(block, 'AMP', Code.ORDER_ATOMIC),
           code = 'play ' + play + ', attack: ' + attack + ', decay: ' + decay + ', sustain: ' + sustain + ', release: ' + release + ', amp: ' + amp + '\n';
 
-	  return code;
-	};
+      return code;
+    };
 
     function kw_validator(text) {
         var i, len, c, cl, accum = '', isLetter, isNumber;
@@ -455,18 +473,18 @@
         return accum;
     }
 
-	Bs.SPI_Kw = {
-		init: function() {
-			this.appendDummyInput()
-			.appendField(":")
-			.appendField(new Blockly.FieldTextInput("e3", kw_validator), "KW");
-			this.setInputsInline(true);
-			this.setOutput(true, "kw");
-			this.setColour(290);
-			this.setTooltip('');
-			this.setHelpUrl('http://www.example.com/');
-		}
-	};
+    Bs.SPI_Kw = {
+        init: function() {
+            this.appendDummyInput()
+            .appendField(":")
+            .appendField(new Blockly.FieldTextInput("e3", kw_validator), "KW");
+            this.setInputsInline(true);
+            this.setOutput(true, "kw");
+            this.setColour(290);
+            this.setTooltip('');
+            this.setHelpUrl('http://www.example.com/');
+        }
+    };
 
     Code.SPI_Kw = function(block) {
         var kw = block.getFieldValue('KW');
