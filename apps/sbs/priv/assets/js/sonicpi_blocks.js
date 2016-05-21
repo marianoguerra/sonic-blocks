@@ -87,7 +87,7 @@
     };
 
     Code.SPI_Loop = function(block) {
-        var body = Blockly.JavaScript.statementToCode(block, 'BODY');
+        var body = Code.statementToCode(block, 'BODY');
         var code = 'loop do\n' + body + 'end\n\n';
         return code;
     };
@@ -161,7 +161,7 @@
 
     Code.SPI_Sample = function(block) {
         var sample = block.getFieldValue('SAMPLE');
-        var rate = Blockly.JavaScript.valueToCode(block, 'RATE', Blockly.JavaScript.ORDER_ATOMIC);
+        var rate = Code.valueToCode(block, 'RATE', Code.ORDER_ATOMIC);
         var code = 'sample :' + sample + ', rate: (' + rate + ')\n';
         return code;
     };
@@ -187,8 +187,8 @@
 
     Code.SPI_With_FX = function(block) {
       var fx = block.getFieldValue('FX');
-      var mix = Blockly.JavaScript.valueToCode(block, 'MIX', Blockly.JavaScript.ORDER_ATOMIC);
-      var body = Blockly.JavaScript.statementToCode(block, 'BODY');
+      var mix = Code.valueToCode(block, 'MIX', Code.ORDER_ATOMIC);
+      var body = Code.statementToCode(block, 'BODY');
       var code = 'with_fx :' + fx + ', mix: (' + mix + ') do\n' + body + '\nend\n\n';
       return code;
     };
@@ -210,7 +210,7 @@
 
     Code.SPI_With_Synth = function(block) {
       var synth = block.getFieldValue('SYNTH');
-      var body = Blockly.JavaScript.statementToCode(block, 'BODY');
+      var body = Code.statementToCode(block, 'BODY');
       var code = 'with_synth :' + synth + ' do\n' + body + '\nend\n\n';
       return code;
     };
@@ -234,8 +234,8 @@
 	};
 
 	Code.SPI_Do_Times = function(block) {
-	  var times = Blockly.JavaScript.valueToCode(block, 'TIMES', Blockly.JavaScript.ORDER_ATOMIC);
-	  var body = Blockly.JavaScript.statementToCode(block, 'BODY');
+	  var times = Code.valueToCode(block, 'TIMES', Code.ORDER_ATOMIC);
+	  var body = Code.statementToCode(block, 'BODY');
 	  var code = times + '.times do\n' + body + '\nend;\n\n';
 	  return code;
 	};
@@ -256,7 +256,7 @@
     };
 
     Code.SPI_In_Thread = function(block) {
-        var body = Blockly.JavaScript.statementToCode(block, 'BODY');
+        var body = Code.statementToCode(block, 'BODY');
         var code = 'in_thread do\n' + body + 'end\n\n';
         return code;
     };
@@ -266,12 +266,18 @@
 		this.appendValueInput("PLAY")
 			.setCheck("kw")
 			.appendField("Play");
+		this.appendValueInput("ATTACK")
+			.setCheck("Number")
+			.appendField("attack");
+		this.appendValueInput("DECAY")
+			.setCheck("Number")
+			.appendField("Decay");
+		this.appendValueInput("SUSTAIN")
+			.setCheck("Number")
+			.appendField("Sustain");
 		this.appendValueInput("RELEASE")
 			.setCheck("Number")
 			.appendField("Release");
-		this.appendValueInput("CUTOFF")
-			.setCheck("Number")
-			.appendField("Cut off");
 		this.appendValueInput("AMP")
 			.setCheck("Number")
 			.appendField("Amp");
@@ -285,11 +291,14 @@
 	};
 
 	Code.SPI_Play = function(block) {
-	  var play = Blockly.JavaScript.valueToCode(block, 'PLAY', Blockly.JavaScript.ORDER_ATOMIC);
-	  var release = Blockly.JavaScript.valueToCode(block, 'RELEASE', Blockly.JavaScript.ORDER_ATOMIC);
-	  var cutoff = Blockly.JavaScript.valueToCode(block, 'CUTOFF', Blockly.JavaScript.ORDER_ATOMIC);
-	  var amp = Blockly.JavaScript.valueToCode(block, 'AMP', Blockly.JavaScript.ORDER_ATOMIC);
-	  var code = 'play ' + play + ', release: ' + release + ', cutoff: ' + cutoff + ', amp: ' + amp + '\n';
+	  var play = Code.valueToCode(block, 'PLAY', Code.ORDER_ATOMIC),
+          attack = Code.valueToCode(block, 'ATTACK', Code.ORDER_ATOMIC),
+          decay = Code.valueToCode(block, 'DECAY', Code.ORDER_ATOMIC),
+          sustain = Code.valueToCode(block, 'SUSTAIN', Code.ORDER_ATOMIC),
+          release = Code.valueToCode(block, 'RELEASE', Code.ORDER_ATOMIC),
+          amp = Code.valueToCode(block, 'AMP', Code.ORDER_ATOMIC),
+          code = 'play ' + play + ', attack: ' + attack + ', decay: ' + decay + ', sustain: ' + sustain + ', release: ' + release + ', amp: ' + amp + '\n';
+
 	  return code;
 	};
 
@@ -331,6 +340,6 @@
     Code.SPI_Kw = function(block) {
         var kw = block.getFieldValue('KW');
         var code = ':' + kw;
-        return [code, Blockly.JavaScript.ORDER_ATOMIC];
+        return [code, Code.ORDER_ATOMIC];
     };
 }());
