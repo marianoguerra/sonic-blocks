@@ -65,9 +65,15 @@
    <td>
     <button id="stop-all">Stop</button>
    </td>
+   <td>
+    <button id="show-code">Show Code</button>
+   </td>
   </table>
 
   <div id="blocklyDiv" style="height: 480px; width: 100%;"></div>
+  <div id="code-area" style="display: none">
+   <textarea id="code-text" style="width: 98%; height: 25em" readonly></textarea>
+  </div>
 
   <xml id="toolbox" style="display: none">
     <category name="Sound" colour="290">
