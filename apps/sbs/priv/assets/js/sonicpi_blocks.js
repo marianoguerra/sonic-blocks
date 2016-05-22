@@ -648,8 +648,7 @@
 			.appendField(new Blockly.FieldDropdown(SCALES), "TYPE");
 		this.appendValueInput("OCTAVES")
 			.setCheck("Number")
-			.appendField("for ")
-			.appendField("Octaves ");
+			.appendField("Octaves");
 		this.setInputsInline(true);
 		this.setOutput(true, "Array");
 		this.setColour(260);
