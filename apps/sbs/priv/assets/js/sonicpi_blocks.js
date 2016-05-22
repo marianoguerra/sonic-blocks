@@ -202,11 +202,20 @@
             ['Vinyl hiss', 'vinyl_hiss']
         ],
         SCALES = [
+            ['Major', 'major'],
+            ['Minor', 'minor'],
+            ['Major Pentatonic', 'major_pentatonic'],
+            ['Minor Pentatonic', 'minor_pentatonic'],
+            ['Melodic Major', 'melodic_major'],
+            ['Melodic Minor', 'melodic_minor'],
+            ['Melodic Minor Asc', 'melodic_minor_asc'],
+            ['Melodic Minor Desc', 'melodic_minor_desc'],
+            ['Chromatic', 'chromatic'],
+
             ['Aeolian', 'aeolian'],
             ['Augmented2', 'augmented2'],
             ['Augmented', 'augmented'],
             ['Chinese', 'chinese'],
-            ['Chromatic', 'chromatic'],
             ['Diatonic', 'diatonic'],
             ['Diminished2', 'diminished2'],
             ['Diminished', 'diminished'],
@@ -222,14 +231,6 @@
             ['Locrian Major', 'locrian_major'],
             ['Lydian', 'lydian'],
             ['Lydian Minor', 'lydian_minor'],
-            ['Major', 'major'],
-            ['Major Pentatonic', 'major_pentatonic'],
-            ['Melodic Major', 'melodic_major'],
-            ['Melodic Minor Asc', 'melodic_minor_asc'],
-            ['Melodic Minor Desc', 'melodic_minor_desc'],
-            ['Melodic Minor', 'melodic_minor'],
-            ['Minor', 'minor'],
-            ['Minor Pentatonic', 'minor_pentatonic'],
             ['Mixolydian', 'mixolydian'],
             ['Octatonic', 'octatonic'],
             ['Phrygian', 'phrygian'],
@@ -635,6 +636,33 @@
 	  var tonic = Code.valueToCode(block, 'TONIC', Code.ORDER_ATOMIC);
 	  var type = block.getFieldValue('TYPE');
 	  var code = 'chord(' + tonic + ', ' + type + ')';
+	  return [code, Code.ORDER_FUNCTION_CALL];
+	};
+
+	Bs.SPI_Scale = {
+	  init: function() {
+		this.appendValueInput("NOTE")
+			.setCheck("kw")
+			.appendField("Scale ");
+		this.appendDummyInput()
+			.appendField(new Blockly.FieldDropdown(SCALES), "TYPE");
+		this.appendValueInput("OCTAVES")
+			.setCheck("Number")
+			.appendField("for ")
+			.appendField("Octaves ");
+		this.setInputsInline(true);
+		this.setOutput(true, "Array");
+		this.setColour(260);
+		this.setTooltip('');
+		this.setHelpUrl('http://www.example.com/');
+	  }
+	};
+
+	Code.SPI_Scale = function(block) {
+	  var note = Code.valueToCode(block, 'NOTE', Code.ORDER_ATOMIC);
+	  var octaves = Code.valueToCode(block, 'OCTAVES', Code.ORDER_ATOMIC);
+	  var type = ':' + block.getFieldValue('TYPE');
+	  var code = 'scale(' + note + ', ' + type + ', num_octaves: ' + octaves + ')';
 	  return [code, Code.ORDER_FUNCTION_CALL];
 	};
 
