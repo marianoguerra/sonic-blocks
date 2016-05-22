@@ -306,7 +306,7 @@
     Bs.SPI_Loop = {
         init: function() {
             this.appendDummyInput()
-            .appendField("Loop");
+            .appendField("loop");
             this.appendStatementInput("BODY")
             .setCheck(null);
             this.setInputsInline(false);
@@ -327,7 +327,7 @@
     Bs.SPI_Sleep = {
         init: function() {
             this.appendDummyInput()
-            .appendField("Sleep");
+            .appendField("sleep");
             this.appendValueInput("TIME")
             .setCheck("Number");
             this.appendDummyInput()
@@ -350,7 +350,7 @@
     Bs.SPI_Rrand = {
         init: function() {
             this.appendDummyInput()
-            .appendField("Random value between");
+            .appendField("random value between");
             this.appendValueInput("FROM")
             .setCheck("Number");
             this.appendDummyInput()
@@ -376,7 +376,7 @@
     Bs.SPI_Sample = {
         init: function() {
             this.appendDummyInput()
-            .appendField("Sample")
+            .appendField("sample")
             .appendField(new Blockly.FieldDropdown(SAMPLES), "SAMPLE");
             this.appendDummyInput()
             .appendField("at rate");
@@ -419,7 +419,7 @@
     Bs.SPI_With_FX = {
         init: function() {
             this.appendDummyInput()
-            .appendField("With FX")
+            .appendField("with FX")
             .appendField(new Blockly.FieldDropdown(FXS), "FX");
             this.appendValueInput("MIX")
             .setCheck("Number")
@@ -446,7 +446,7 @@
     Bs.SPI_With_Synth = {
       init: function() {
         this.appendDummyInput()
-            .appendField("With Synth")
+            .appendField("with synth")
             .appendField(new Blockly.FieldDropdown(SYNTHS), "SYNTH");
         this.appendStatementInput("BODY")
             .setCheck(null);
@@ -469,9 +469,9 @@
       init: function() {
         this.appendValueInput("TIMES")
             .setCheck("Number")
-            .appendField("Do");
+            .appendField("do");
         this.appendDummyInput()
-            .appendField("Times");
+            .appendField("times");
         this.appendStatementInput("BODY")
             .setCheck(null);
         this.setInputsInline(true);
@@ -493,7 +493,7 @@
     Bs.SPI_In_Thread = {
         init: function() {
             this.appendDummyInput()
-            .appendField("Do in Parallel");
+            .appendField("do in parallel");
             this.appendStatementInput("BODY")
             .setCheck(null);
             this.setInputsInline(false);
@@ -515,22 +515,22 @@
       init: function() {
         this.appendValueInput("PLAY")
             .setCheck(["kw", "Array"])
-            .appendField("Play");
+            .appendField("play");
         this.appendValueInput("ATTACK")
             .setCheck("Number")
             .appendField("attack");
         this.appendValueInput("DECAY")
             .setCheck("Number")
-            .appendField("Decay");
+            .appendField("decay");
         this.appendValueInput("SUSTAIN")
             .setCheck("Number")
-            .appendField("Sustain");
+            .appendField("sustain");
         this.appendValueInput("RELEASE")
             .setCheck("Number")
-            .appendField("Release");
+            .appendField("release");
         this.appendValueInput("AMP")
             .setCheck("Number")
-            .appendField("Amp");
+            .appendField("amp");
         this.setInputsInline(true);
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
@@ -620,7 +620,7 @@
 	  init: function() {
 		this.appendValueInput("TONIC")
 			.setCheck("kw")
-			.appendField("Chord with tonic");
+			.appendField("chord with tonic");
 		this.appendDummyInput()
 			.appendField("and type")
 			.appendField(new Blockly.FieldDropdown(CHORD_TYPES), "TYPE");
@@ -643,12 +643,12 @@
 	  init: function() {
 		this.appendValueInput("NOTE")
 			.setCheck("kw")
-			.appendField("Scale ");
+			.appendField("scale ");
 		this.appendDummyInput()
 			.appendField(new Blockly.FieldDropdown(SCALES), "TYPE");
 		this.appendValueInput("OCTAVES")
 			.setCheck("Number")
-			.appendField("Octaves");
+			.appendField("octaves");
 		this.setInputsInline(true);
 		this.setOutput(true, "Array");
 		this.setColour(290);
