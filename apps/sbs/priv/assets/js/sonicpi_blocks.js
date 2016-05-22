@@ -486,7 +486,7 @@
     Code.SPI_Do_Times = function(block) {
       var times = Code.valueToCode(block, 'TIMES', Code.ORDER_ATOMIC);
       var body = Code.statementToCode(block, 'BODY');
-      var code = times + '.times do\n' + body + '\nend;\n\n';
+      var code = times + '.times do\n' + body + '\nend\n\n';
       return code;
     };
 
