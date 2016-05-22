@@ -638,4 +638,28 @@
 	  return [code, Code.ORDER_FUNCTION_CALL];
 	};
 
+    Bs.SPI_Play_Pattern = {
+      init: function() {
+        this.appendValueInput("NOTES")
+            .setCheck("Array")
+            .appendField("play pattern");
+        this.appendValueInput("TIME")
+            .setCheck("Number")
+            .appendField("waiting");
+        this.setInputsInline(true);
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(260);
+        this.setTooltip('');
+        this.setHelpUrl('http://www.example.com/');
+      }
+    };
+
+    Code.SPI_Play_Pattern = function(block) {
+      var notes = Code.valueToCode(block, 'NOTES', Code.ORDER_ATOMIC);
+      var time = Code.valueToCode(block, 'TIME', Code.ORDER_ATOMIC);
+      var code = 'play_pattern_timed(' + notes + ', ' + time + ')\n';
+      return code;
+    };
+
 }());
