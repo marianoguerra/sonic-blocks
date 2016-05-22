@@ -74,24 +74,12 @@
       <block type="SPI_Kw">
        <field name="KW">e5</field>
       </block>
-      <block type="SPI_Loop"></block>
-      <block type="SPI_With_FX">
-        <value name="MIX">
-          <shadow type="math_number">
-            <field name="NUM">1</field>
-          </shadow>
+      <block type="SPI_Chord">
+        <value name="TONIC">
+         <shadow type="SPI_Kw">
+          <field name="KW">e5</field>
+         </shadow>
         </value>
-      </block>
-      <block type="SPI_With_Synth">
-      </block>
-      <block type="SPI_Do_Times">
-        <value name="TIMES">
-          <shadow type="math_number">
-            <field name="NUM">2</field>
-          </shadow>
-        </value>
-      </block>
-      <block type="SPI_In_Thread">
       </block>
       <block type="SPI_Play">
         <value name="PLAY">
@@ -150,6 +138,25 @@
             <field name="NUM">2</field>
           </shadow>
         </value>
+      </block>
+      <block type="SPI_Loop"></block>
+      <block type="SPI_With_FX">
+        <value name="MIX">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="SPI_With_Synth">
+      </block>
+      <block type="SPI_Do_Times">
+        <value name="TIMES">
+          <shadow type="math_number">
+            <field name="NUM">2</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="SPI_In_Thread">
       </block>
     </category>
     <category name="Math and Numbers" id="catMath" colour="230">

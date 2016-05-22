@@ -200,7 +200,107 @@
             ['Vinyl rewind', 'vinyl_rewind'],
             ['Vinyl scratch', 'vinyl_scratch'],
             ['Vinyl hiss', 'vinyl_hiss']
-        ];
+        ],
+        SCALES = [
+            ['Aeolian', 'aeolian'],
+            ['Augmented2', 'augmented2'],
+            ['Augmented', 'augmented'],
+            ['Chinese', 'chinese'],
+            ['Chromatic', 'chromatic'],
+            ['Diatonic', 'diatonic'],
+            ['Diminished2', 'diminished2'],
+            ['Diminished', 'diminished'],
+            ['Dorian', 'dorian'],
+            ['Harmonic Major', 'harmonic_major'],
+            ['Harmonic Minor', 'harmonic_minor'],
+            ['Hindu', 'hindu'],
+            ['Hungarian Minor', 'hungarian_minor'],
+            ['Indian', 'indian'],
+            ['Ionian', 'ionian'],
+            ['Leading Whole', 'leading_whole'],
+            ['Locrian', 'locrian'],
+            ['Locrian Major', 'locrian_major'],
+            ['Lydian', 'lydian'],
+            ['Lydian Minor', 'lydian_minor'],
+            ['Major', 'major'],
+            ['Major Pentatonic', 'major_pentatonic'],
+            ['Melodic Major', 'melodic_major'],
+            ['Melodic Minor Asc', 'melodic_minor_asc'],
+            ['Melodic Minor Desc', 'melodic_minor_desc'],
+            ['Melodic Minor', 'melodic_minor'],
+            ['Minor', 'minor'],
+            ['Minor Pentatonic', 'minor_pentatonic'],
+            ['Mixolydian', 'mixolydian'],
+            ['Octatonic', 'octatonic'],
+            ['Phrygian', 'phrygian'],
+            ['Prometheus', 'prometheus'],
+            ['Spanish', 'spanish'],
+            ['Todi', 'todi'],
+            ['Whole Tone', 'whole_tone'],
+            ['Whole', 'whole']
+        ],
+		CHORD_TYPES = [
+			["major", ":major"],
+			["minor", ":minor"],
+			["augmented", ":augmented"],
+			["dim7", ":dim7"],
+			["dim", ":dim"],
+			["dom7", ":dom7"],
+			["major7", ":major7"],
+			["minor7", ":minor7"],
+			["sus2", ":sus2"],
+			["sus4", ":sus4"],
+
+			["1", "'1'"],
+			["11", "'11'"],
+			["11+", "'11+'"],
+			["13", "'13'"],
+			["+5", "'+5'"],
+			["5", "'5'"],
+			["6", "'6'"],
+			["6*9", "'6*9'"],
+			["7-10", "'7-10'"],
+			["7-5", "'7-5'"],
+			["7+5", "'7+5'"],
+			["7+5-9", "'7+5-9'"],
+			["7", "'7'"],
+			["7-9", "'7-9'"],
+			["7sus2", "'7sus2'"],
+			["7sus4", "'7sus4'"],
+			["9+5", "'9+5'"],
+			["9", "'9'"],
+			["9sus4", "'9sus4'"],
+			["a", ":a"],
+			["add11", ":add11"],
+			["add13", ":add13"],
+			["add2", ":add2"],
+			["add4", ":add4"],
+			["add9", ":add9"],
+			["i7", ":i7"],
+			["i", ":i"],
+			["m11", ":m11"],
+			["m11+", "'m11+'"],
+			["m13", ":m13"],
+			["m+5", "'m+5'"],
+			["m6*9", "'m6*9'"],
+			["m6", ":m6"],
+			["m7+5-9", "'m7+5-9'"],
+			["m7-5", "'m7-5'"],
+			["m7+5", "'m7+5'"],
+			["m7-9", "'m7-9'"],
+			["m7+9", "'m7+9'"],
+			["m7", ":m7"],
+			["M7", ":M7"],
+			["m9+5", "'m9+5'"],
+			["m9", ":m9"],
+			["madd11", ":madd11"],
+			["madd13", ":madd13"],
+			["madd2", ":madd2"],
+			["madd4", ":madd4"],
+			["madd9", ":madd9"],
+			["maj11", ":maj11"],
+			["maj9", ":maj9"]
+		];
 
     Bs.SPI_Loop = {
         init: function() {
@@ -514,4 +614,28 @@
           block.getFieldValue('VAR'), Blockly.Variables.NAME_TYPE);
       return varName + ' = ' + argument0 + '\n';
     };
+
+	Bs.SPI_Chord = {
+	  init: function() {
+		this.appendValueInput("TONIC")
+			.setCheck("kw")
+			.appendField("Chord with tonic");
+		this.appendDummyInput()
+			.appendField("and type")
+			.appendField(new Blockly.FieldDropdown(CHORD_TYPES), "TYPE");
+		this.setInputsInline(true);
+		this.setOutput(true, "Array");
+		this.setColour(260);
+		this.setTooltip('');
+		this.setHelpUrl('http://www.example.com/');
+	  }
+	};
+
+	Code.SPI_Chord = function(block) {
+	  var tonic = Code.valueToCode(block, 'TONIC', Code.ORDER_ATOMIC);
+	  var type = block.getFieldValue('TYPE');
+	  var code = 'chord(' + tonic + ', ' + type + ')';
+	  return [code, Code.ORDER_FUNCTION_CALL];
+	};
+
 }());
