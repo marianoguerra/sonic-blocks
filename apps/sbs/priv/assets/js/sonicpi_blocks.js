@@ -404,7 +404,7 @@
             .setCheck("Array")
             .appendField("choose");
         this.setOutput(true, null);
-        this.setColour(260);
+        this.setColour(290);
         this.setTooltip('');
         this.setHelpUrl('http://www.example.com/');
       }
@@ -626,7 +626,7 @@
 			.appendField(new Blockly.FieldDropdown(CHORD_TYPES), "TYPE");
 		this.setInputsInline(true);
 		this.setOutput(true, "Array");
-		this.setColour(260);
+		this.setColour(290);
 		this.setTooltip('');
 		this.setHelpUrl('http://www.example.com/');
 	  }
@@ -651,7 +651,7 @@
 			.appendField("Octaves");
 		this.setInputsInline(true);
 		this.setOutput(true, "Array");
-		this.setColour(260);
+		this.setColour(290);
 		this.setTooltip('');
 		this.setHelpUrl('http://www.example.com/');
 	  }
@@ -676,7 +676,7 @@
         this.setInputsInline(true);
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
-        this.setColour(260);
+        this.setColour(290);
         this.setTooltip('');
         this.setHelpUrl('http://www.example.com/');
       }
