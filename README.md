@@ -65,6 +65,8 @@ following resources to try o make it work:
 Experimental Desktop App
 ------------------------
 
+![Sonic Blocks Desktop Screenshot](https://raw.githubusercontent.com/marianoguerra/sonic-blocks/master/apps/sbs/priv/assets/img/sonic-blocks-desktop-screenshot.png)
+
 This app is just to show how to include sonic blocks in a webview, to use it
 you need to install:
 
