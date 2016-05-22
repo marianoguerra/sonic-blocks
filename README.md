@@ -62,6 +62,28 @@ following resources to try o make it work:
 * https://github.com/samaaron/sonic-pi/issues/827
 * https://github.com/overtone/overtone/wiki/Installing-and-starting-jack
 
+Experimental Desktop App
+------------------------
+
+This app is just to show how to include sonic blocks in a webview, to use it
+you need to install:
+
+* python 3
+* PyQt5 and PyQt5 WebKit
+* python-osc
+
+On debian/ubuntu:
+
+    sudo apt install python3-pyqt5 python3-pyqt5.qtwebkit
+    sudo pip3 install python-osc
+
+Then run:
+
+    python3 sonicblocks.py
+
+Note: you don't need to run the server for this, this app will call sonic pi's
+backend directly using python-osc
+
 Technology
 ----------
 
